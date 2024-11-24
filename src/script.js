@@ -6,7 +6,7 @@ const scene = new THREE.Scene();
 
 // add objects to the scene
 const cubeGeometry = new THREE.BoxGeometry(1, 1, 1);
-const cubeMaterial = new THREE.MeshBasicMaterial({ color: "red" });
+const cubeMaterial = new THREE.MeshBasicMaterial({ color: "red", wireframe: true });
 
 const cubeMesh = new THREE.Mesh(cubeGeometry, cubeMaterial);
 const cubeMesh2 = new THREE.Mesh(cubeGeometry, cubeMaterial);
@@ -62,6 +62,14 @@ group.position.y = 2;
 group.scale.setScalar(2);
 cubeMesh.position.y = -1;
 cubeMesh.scale.setScalar(0.5)
+
+cubeMesh.add(axisHelper)
+
+cubeMesh.rotation.z = Math.PI * 0.5;
+cubeMesh.rotation.x = THREE.MathUtils.degToRad(90);
+
+cubeMesh.rotation.reorder('YXZ')
+
 window.addEventListener('resize', () =>{
   camera.aspect = window.innerWidth / window.innerHeight;
   camera.updateProjectionMatrix()
